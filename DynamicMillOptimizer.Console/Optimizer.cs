@@ -29,7 +29,7 @@ public class Optimizer
             {
                 // Current line cannot be optimized.
                 
-                WriteAnyOptimizedLinesToBuffer(optimizedLinesBuffer, output);
+                WriteAnyOptimizedLinesToOutput(optimizedLinesBuffer, output);
                 
                 output.Add(currentLine);
                 continue;
@@ -48,7 +48,7 @@ public class Optimizer
             else
             {
                 // The line matches the existing group of optimized lines. Write the current buffer to the output, clear it, and add the current line to the new group of optimized lines.
-                WriteAnyOptimizedLinesToBuffer(optimizedLinesBuffer, output);
+                WriteAnyOptimizedLinesToOutput(optimizedLinesBuffer, output);
                 optimizedAxis = axis;
                 optimizedLinesBuffer.Add(currentLine);
             }
@@ -57,7 +57,7 @@ public class Optimizer
         return output.ToArray();
     }
 
-    private static void WriteAnyOptimizedLinesToBuffer(List<string> optimizedLinesBuffer, List<string> output)
+    private static void WriteAnyOptimizedLinesToOutput(List<string> optimizedLinesBuffer, List<string> output)
     {
         if (optimizedLinesBuffer.Any())
         {
