@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMillOptimizer.Console", "DynamicMillOptimizer.Console\DynamicMillOptimizer.Console.csproj", "{A74912B0-A43A-4565-B664-ADF02CD1A929}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMillOptimizer.Tests", "DynamicMillOptimizer.Tests\DynamicMillOptimizer.Tests.csproj", "{54A8BB24-0D25-421E-BA6D-7E8FB89C2594}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{A74912B0-A43A-4565-B664-ADF02CD1A929}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A74912B0-A43A-4565-B664-ADF02CD1A929}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A74912B0-A43A-4565-B664-ADF02CD1A929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54A8BB24-0D25-421E-BA6D-7E8FB89C2594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54A8BB24-0D25-421E-BA6D-7E8FB89C2594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54A8BB24-0D25-421E-BA6D-7E8FB89C2594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54A8BB24-0D25-421E-BA6D-7E8FB89C2594}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
