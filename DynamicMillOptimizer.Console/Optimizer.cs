@@ -7,13 +7,8 @@ public class Optimizer
     /// <summary>
     /// Matches lines in the format X123.456 or Y123.456
     /// </summary>
-    private readonly Regex _linePattern = new(@"^([XY])-?(\d*\.\d*)$");
+    private readonly Regex _optimizableLinePattern = new(@"^([XY])-?(\d*\.\d*)$");
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="lines"></param>
-    /// <returns></returns>
     public string[] Optimize(string[] lines)
     {
         List<string> output = [];
@@ -21,48 +16,53 @@ public class Optimizer
 
         foreach (var currentLine in lines)
         {
-            // Check if the current line can be optimized
-            var match = _linePattern.Match(currentLine);
+            var match = _optimizableLinePattern.Match(currentLine);
 
-            if (!match.Success)
+            var lineCanBeOptimized = match.Success;
+
+            if (lineCanBeOptimized)
             {
-                // Current line cannot be optimized.
-
-                WriteAnyOptimizedLinesToOutput(optimizedLinesGroup, output);
-
-                output.Add(currentLine);
-                continue;
-            }
-
-            // Current line can be optimized.
-
-            // Determine if the current line is for X or Y
-            var axis = match.Groups[1].Value;
-
-            if (optimizedLinesGroup.Axis is null)
-            {
-                optimizedLinesGroup.Add(currentLine);
-            }
-
-            if (axis == optimizedLinesGroup.Axis)
-            {
-                // The line matches the existing group of optimized lines. Add it to the list.
-                optimizedLinesGroup.Add(currentLine);
+                HandleOptimizableLine(optimizedLinesGroup, currentLine, match, output);
             }
             else
             {
-                // The line matches the existing group of optimized lines. Write the current buffer to the output, clear it, and add the current line to the new group of optimized lines.
-                WriteAnyOptimizedLinesToOutput(optimizedLinesGroup, output);
-                optimizedLinesGroup.Add(currentLine);
+                HandleUnoptimizableLine(optimizedLinesGroup, output, currentLine);
             }
         }
         
-        WriteAnyOptimizedLinesToOutput(optimizedLinesGroup, output);
+        MoveBufferToOutput(optimizedLinesGroup, output);
 
         return output.ToArray();
     }
 
-    private static void WriteAnyOptimizedLinesToOutput(OptimizedLinesGroup optimizedLinesGroup, List<string> output)
+    private static void HandleOptimizableLine(OptimizedLinesGroup optimizedLinesGroup, string currentLine, Match match,
+        List<string> output)
+    {
+        var groupExists = optimizedLinesGroup.Buffer.Count > 0;
+        
+        if (groupExists && !CurrentLineBelongsToExistingGroup())
+        {
+            MoveBufferToOutput(optimizedLinesGroup, output);
+        }
+
+        optimizedLinesGroup.Add(currentLine);
+        return;
+
+        bool CurrentLineBelongsToExistingGroup()
+        {
+            var axisOfCurrentLine = match.Groups[1].Value;
+
+            return axisOfCurrentLine == optimizedLinesGroup.Axis;
+        }
+    }
+
+    private static void HandleUnoptimizableLine(OptimizedLinesGroup optimizedLinesGroup, List<string> output, string currentLine)
+    {
+        MoveBufferToOutput(optimizedLinesGroup, output);
+        output.Add(currentLine);
+    }
+
+    private static void MoveBufferToOutput(OptimizedLinesGroup optimizedLinesGroup, List<string> output)
     {
         var buffer = optimizedLinesGroup.Buffer;
 
