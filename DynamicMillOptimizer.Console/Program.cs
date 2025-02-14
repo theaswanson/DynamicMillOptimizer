@@ -1,6 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using DynamicMillOptimizer.Console;
+using DynamicMillOptimizer.Console.Commands;
+using DynamicMillOptimizer.Console.Commands.Optimizers;
 
 // Get input file
 Console.Write("Path to file: ");
@@ -28,7 +30,7 @@ Console.WriteLine("Reading...");
 var lines = await File.ReadAllLinesAsync(file.FullName);
 
 // Optimize it
-var optimizedLines = new Optimizer().Optimize(lines);
+var optimizedLines = new FileOptimizer(new CommandParser(), new SingleAxisOptimizer()).Optimize(lines);
 
 if (optimizedLines.Length == lines.Length)
 {

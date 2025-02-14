@@ -1,17 +1,19 @@
 using DynamicMillOptimizer.Console;
+using DynamicMillOptimizer.Console.Commands;
+using DynamicMillOptimizer.Console.Commands.Optimizers;
 using FluentAssertions;
 
 namespace DynamicMillOptimizer.Tests;
 
 [TestFixture]
-public class OptimizerTests
+public class FileOptimizerTests
 {
-    private Optimizer _optimizer;
+    private FileOptimizer _fileOptimizer;
 
     [SetUp]
     public void Setup()
     {
-        _optimizer = new Optimizer();
+        _fileOptimizer = new FileOptimizer(new CommandParser(), new SingleAxisOptimizer());
     }
 
     [Test]
@@ -26,7 +28,7 @@ public class OptimizerTests
             "X1.5",
         ];
 
-        var result = _optimizer.Optimize(lines);
+        var result = _fileOptimizer.Optimize(lines);
 
         result.Should().BeEquivalentTo(
         [
@@ -47,7 +49,7 @@ public class OptimizerTests
             "Y1.5",
         ];
 
-        var result = _optimizer.Optimize(lines);
+        var result = _fileOptimizer.Optimize(lines);
 
         result.Should().BeEquivalentTo(
         [
@@ -68,7 +70,7 @@ public class OptimizerTests
             "X-1.5",
         ];
 
-        var result = _optimizer.Optimize(lines);
+        var result = _fileOptimizer.Optimize(lines);
 
         result.Should().BeEquivalentTo(
         [
@@ -89,7 +91,7 @@ public class OptimizerTests
             "Y-1.5",
         ];
 
-        var result = _optimizer.Optimize(lines);
+        var result = _fileOptimizer.Optimize(lines);
 
         result.Should().BeEquivalentTo(
         [
@@ -111,7 +113,7 @@ public class OptimizerTests
             "Y1.6",
         ];
 
-        var result = _optimizer.Optimize(lines);
+        var result = _fileOptimizer.Optimize(lines);
 
         result.Should().BeEquivalentTo(
         [
@@ -133,7 +135,7 @@ public class OptimizerTests
             "X-3.1501 Y-.3268",
         ];
 
-        var result = _optimizer.Optimize(lines);
+        var result = _fileOptimizer.Optimize(lines);
 
         result.Should().BeEquivalentTo(
         [
@@ -154,7 +156,7 @@ public class OptimizerTests
             "How are you?",
         ];
 
-        var result = _optimizer.Optimize(lines);
+        var result = _fileOptimizer.Optimize(lines);
 
         result.Should().BeEquivalentTo(
         [
