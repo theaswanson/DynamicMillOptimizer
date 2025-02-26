@@ -12,7 +12,7 @@ public class OptimizeFileCommand : AsyncCommand<OptimizeFileCommand.Settings>
     public sealed class Settings : CommandSettings
     {
         [Description("Path to the dynamic milling file to optimize.")]
-        [CommandOption("-d")]
+        [CommandArgument(0, "<filepath>")]
         public string? FilePath { get; set; }
     }
 
