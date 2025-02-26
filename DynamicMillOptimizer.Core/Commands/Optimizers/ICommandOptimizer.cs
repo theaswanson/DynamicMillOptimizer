@@ -1,4 +1,4 @@
-﻿namespace DynamicMillOptimizer.Console.Commands.Optimizers;
+﻿namespace DynamicMillOptimizer.Core.Commands.Optimizers;
 
 public interface ICommandOptimizer<T> where T : ICommand
 {

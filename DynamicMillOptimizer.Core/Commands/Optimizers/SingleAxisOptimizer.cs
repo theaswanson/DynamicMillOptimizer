@@ -1,4 +1,4 @@
-﻿namespace DynamicMillOptimizer.Console.Commands.Optimizers;
+﻿namespace DynamicMillOptimizer.Core.Commands.Optimizers;
 
 public class SingleAxisOptimizer : ICommandOptimizer<SingleAxisCommand>
 {

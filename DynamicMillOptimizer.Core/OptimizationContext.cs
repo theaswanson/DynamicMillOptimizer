@@ -1,6 +1,6 @@
-﻿using DynamicMillOptimizer.Console.Commands;
+﻿using DynamicMillOptimizer.Core.Commands;
 
-namespace DynamicMillOptimizer.Console;
+namespace DynamicMillOptimizer.Core;
 
 /// <summary>
 /// Tracks a single set of commands that need to be optimized.

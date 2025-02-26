@@ -1,7 +1,7 @@
-﻿using DynamicMillOptimizer.Console.Commands;
-using DynamicMillOptimizer.Console.Commands.Optimizers;
+﻿using DynamicMillOptimizer.Core.Commands;
+using DynamicMillOptimizer.Core.Commands.Optimizers;
 
-namespace DynamicMillOptimizer.Console;
+namespace DynamicMillOptimizer.Core;
 
 public class FileOptimizer
 {

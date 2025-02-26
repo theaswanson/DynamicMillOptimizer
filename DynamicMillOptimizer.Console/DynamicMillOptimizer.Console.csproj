@@ -9,4 +9,8 @@
         <PublishSingleFile>true</PublishSingleFile>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DynamicMillOptimizer.Core\DynamicMillOptimizer.Core.csproj" />
+    </ItemGroup>
+
 </Project>

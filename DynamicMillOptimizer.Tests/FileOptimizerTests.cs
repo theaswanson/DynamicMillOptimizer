@@ -1,6 +1,6 @@
-using DynamicMillOptimizer.Console;
-using DynamicMillOptimizer.Console.Commands;
-using DynamicMillOptimizer.Console.Commands.Optimizers;
+using DynamicMillOptimizer.Core;
+using DynamicMillOptimizer.Core.Commands;
+using DynamicMillOptimizer.Core.Commands.Optimizers;
 using FluentAssertions;
 
 namespace DynamicMillOptimizer.Tests;

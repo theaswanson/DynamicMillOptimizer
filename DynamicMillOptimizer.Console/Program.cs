@@ -1,8 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
-
-using DynamicMillOptimizer.Console;
-using DynamicMillOptimizer.Console.Commands;
-using DynamicMillOptimizer.Console.Commands.Optimizers;
+using DynamicMillOptimizer.Core;
+using DynamicMillOptimizer.Core.Commands;
+using DynamicMillOptimizer.Core.Commands.Optimizers;
 
 // Get input file
 Console.Write("Path to file: ");

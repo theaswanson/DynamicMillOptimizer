@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMillOptimizer.Consol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMillOptimizer.Tests", "DynamicMillOptimizer.Tests\DynamicMillOptimizer.Tests.csproj", "{54A8BB24-0D25-421E-BA6D-7E8FB89C2594}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMillOptimizer.Core", "DynamicMillOptimizer.Core\DynamicMillOptimizer.Core.csproj", "{5F5E4B89-F0D0-4913-94B4-D9AC1AF485F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{54A8BB24-0D25-421E-BA6D-7E8FB89C2594}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54A8BB24-0D25-421E-BA6D-7E8FB89C2594}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54A8BB24-0D25-421E-BA6D-7E8FB89C2594}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F5E4B89-F0D0-4913-94B4-D9AC1AF485F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F5E4B89-F0D0-4913-94B4-D9AC1AF485F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F5E4B89-F0D0-4913-94B4-D9AC1AF485F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F5E4B89-F0D0-4913-94B4-D9AC1AF485F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
