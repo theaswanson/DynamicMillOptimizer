@@ -26,12 +26,14 @@ internal static class Program
         // Register dependencies here for dependency injection.
     }
     
-    private static CommandApp BuildApp()
+    private static ICommandApp BuildApp()
     {
-        var app = new CommandApp(new TypeRegistrar(_services));
+        var app = new CommandApp<DefaultCommand>(new TypeRegistrar(_services));
         app.Configure(config =>
         {
-            config.AddCommand<OptimizeFileCommand>("optimize");
+            config.AddCommand<OptimizeFileCommand>("optimize")
+                .WithDescription("Optimizes a dynamic milling file.")
+                .WithExample("optimize", @"""C:\Users\John\Downloads\dynamic-mill-sample.txt""");
         });
         return app;
     }
