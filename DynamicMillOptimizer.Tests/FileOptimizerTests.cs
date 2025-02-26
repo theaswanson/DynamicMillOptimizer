@@ -146,6 +146,71 @@ public class FileOptimizerTests
         ]);
     }
     
+    [TestCase("G73")]
+    [TestCase("G74")]
+    [TestCase("G76")]
+    [TestCase("G77")]
+    [TestCase("G81")]
+    [TestCase("G82")]
+    [TestCase("G83")]
+    [TestCase("G84")]
+    [TestCase("G85")]
+    [TestCase("G86")]
+    [TestCase("G89")]
+    public void DoesNotOptimizeLinesForCannedCycles(string cannedCycleCommand)
+    {
+        string[] lines =
+        [
+            $"something something {cannedCycleCommand} something",
+            "X1.0",
+            "X2.0",
+            "X3.0",
+            "G80"
+        ];
+
+        var result = _fileOptimizer.Optimize(lines);
+
+        result.Should().BeEquivalentTo(
+        [
+            $"something something {cannedCycleCommand} something",
+            "X1.0",
+            "X2.0",
+            "X3.0",
+            "G80"
+        ]);
+    }
+    
+    [Test]
+    public void OptimizesLinesThatComeAfterCannedCycleCommand()
+    {
+        string[] lines =
+        [
+            "something something G83 something",
+            "X1.0",
+            "X2.0",
+            "X3.0",
+            "G80",
+            "X1.0",
+            "X2.0",
+            "X3.0",
+            "X4.0",
+            "X5.0",
+        ];
+
+        var result = _fileOptimizer.Optimize(lines);
+
+        result.Should().BeEquivalentTo(
+        [
+            "something something G83 something",
+            "X1.0",
+            "X2.0",
+            "X3.0",
+            "G80",
+            "X1.0",
+            "X5.0",
+        ]);
+    }
+    
     [Test]
     public void OutputsLinesThatCannotBeOptimized()
     {

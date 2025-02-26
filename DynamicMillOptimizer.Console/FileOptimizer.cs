@@ -33,19 +33,33 @@ public class FileOptimizer
         {
             var command = _commandParser.Parse(currentLine);
 
-            if (command is not UnhandledCommand unhandledCommand)
+            switch (command)
             {
-                if (!context.CanAdd(command))
+                case BeginCannedCycleCommand:
+                    OptimizeCurrentSetAndWriteToOutput(context, output);
+                    WriteCommandToOutput(command, output);
+                    context.Pause();
+                    break;
+                case EndCannedCycleCommand:
+                    OptimizeCurrentSetAndWriteToOutput(context, output);
+                    WriteCommandToOutput(command, output);
+                    context.Unpause();
+                    break;
+                case SingleAxisCommand:
+                    if (!context.CanAdd(command))
+                    {
+                        OptimizeCurrentSetAndWriteToOutput(context, output);
+                    }
+
+                    context.Add(command);
+                    break;
+                case UnhandledCommand:
+                default:
                 {
                     OptimizeCurrentSetAndWriteToOutput(context, output);
+                    WriteCommandToOutput(command, output);
+                    break;
                 }
-
-                context.Add(command);
-            }
-            else
-            {
-                OptimizeCurrentSetAndWriteToOutput(context, output);
-                WriteCommandToOutput(unhandledCommand, output);
             }
         }
         

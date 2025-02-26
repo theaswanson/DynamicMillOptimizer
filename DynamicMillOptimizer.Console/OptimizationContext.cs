@@ -10,6 +10,14 @@ public class OptimizationContext
     public bool IsEmpty => _commandsToOptimize.Count == 0;
 
     private readonly List<ICommand> _commandsToOptimize = [];
+
+    private bool _paused;
+    /// <summary>
+    /// Determines if optimization is currently paused. When paused, no commands will be added to the current set.
+    /// </summary>
+    public bool IsPaused => _paused;
+    public void Pause() => _paused = true;
+    public void Unpause() => _paused = false;
     
     public void Add(ICommand command) => _commandsToOptimize.Add(command);
 
@@ -21,7 +29,7 @@ public class OptimizationContext
     /// </summary>
     /// <param name="command"></param>
     /// <returns></returns>
-    public bool CanAdd(ICommand command) => IsEmpty || _commandsToOptimize[0].CanBeOptimizedWith(command);
+    public bool CanAdd(ICommand command) => IsEmpty || (!IsPaused && _commandsToOptimize[0].CanBeOptimizedWith(command));
 
     /// <summary>
     /// Optimize the current set of commands, after which the set will be cleared.
